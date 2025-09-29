@@ -1,9 +1,12 @@
 import React from "react";
+import Header from "./components/Header";
 
 export default function App() {
   return (
     <>
-      <h1 className="bg-red-400">hola mundo</h1>
+      <main className="bg-orange-100 flex flex-col items-center min-h-screen">
+        <Header />
+      </main>
     </>
   );
 }
