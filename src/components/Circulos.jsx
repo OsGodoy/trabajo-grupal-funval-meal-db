@@ -6,7 +6,7 @@ export default function Circulos() {
 
   useEffect(() => {
     axios
-      .get("https://www.themealdb.com/api/json/v1/1/random.php")
+      .get("https://www.themealdb.com/api/json/v1/1/random.php/")
       .then((res) => setResetas(res.data.meals));
   }, []);
   return (
@@ -17,11 +17,11 @@ export default function Circulos() {
           key={reseta.idMeal}
         >
           <img
-            className="object-cover rounded-full drop-shadow-2xl h-[250px]"
+            className="object-cover rounded-full drop-shadow-2xl h-[200px]"
             src={reseta.strMealThumb}
             alt={reseta.strMeal}
           />
-          <h3>{reseta.strMeal}</h3>
+          <h3 className="h3">{reseta.strMeal}</h3>
         </div>
       ))}
       ;
