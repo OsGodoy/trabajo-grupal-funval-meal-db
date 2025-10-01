@@ -8,12 +8,9 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/meal-recipes" element={<MealRecipes />}></Route>
-        <Route
-          path="/Meal-recipe-details/:id"
-          element={<MealRecipeDetails />}
-        ></Route>
+        <Route path="/" element={<Home />} ></Route>
+        <Route path="/meal-recipes" element={<MealRecipes />} ></Route>
+        <Route path="/Meal-recipe-details/:id" element={<MealRecipeDetails />} ></Route>
       </Routes>
     </>
   );
