@@ -4,11 +4,11 @@ export default function Search() {
   return (
     <>
       <div className="w-80 flex items-center justify-center">
-        <section className="bg-white w-60 p-2 px-3 rounded-full flex items-center justify-center">
+        <section className="bg-white w-60 p-2 px-3 gap-2 rounded-full flex items-center justify-center">
           <input
             className="p-1 outline-none"
             type="text"
-            placeholder="Qué receta buscas?"
+            placeholder="What do we eat today?"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
