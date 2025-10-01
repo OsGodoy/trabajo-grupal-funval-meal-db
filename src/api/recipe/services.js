@@ -9,12 +9,24 @@ const getRandomMeals = async (amount = 10) => {
   return responses.map((r) => r.data.meals[0]);
 };
 
-const searchMeals = (query = "Arrabiata") =>
-  client.get("/search.php", { params: { s: query } });
+const searchMeals = (query = "Arrabiata") =>  client.get("/search.php", { params: { s: query } });
 
-const searchMealDetails = (id) =>
-  client.get("/lookup.php", { params: { i: id } });
+const searchMealDetails = (id) =>  client.get("/lookup.php", { params: { i: id } });
 
-const getAreas = (id) => client.get("/list.php", { params: { a: list } });
+const getAreas = () => client.get("/list.php", { params: { a: "list" } });
+const getCategories = () => client.get("/list.php", { params: { c: "list" } });
 
-export { getRandomMeals, searchMeals, searchMealDetails, getAreas };
+const getMealsByCategory = () => client.get("/filter.php", { params: { c: "list" } });
+const getMealsByArea = () => client.get("/filter.php", { params: { a: "list" } });
+const getMealsByIngredient = () => client.get("/filter.php", { params: { i: "list" } });
+
+export {
+  getRandomMeals,
+  searchMeals,
+  searchMealDetails,
+  getAreas,
+  getCategories,
+  getMealsByCategory,
+  getMealsByArea,
+  getMealsByIngredient
+};
