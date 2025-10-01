@@ -16,9 +16,14 @@ const searchMealDetails = (id) =>  client.get("/lookup.php", { params: { i: id }
 const getAreas = () => client.get("/list.php", { params: { a: "list" } });
 const getCategories = () => client.get("/list.php", { params: { c: "list" } });
 
-const getMealsByCategory = () => client.get("/filter.php", { params: { c: "list" } });
-const getMealsByArea = () => client.get("/filter.php", { params: { a: "list" } });
-const getMealsByIngredient = () => client.get("/filter.php", { params: { i: "list" } });
+const getMealsByCategory = () => client.get("/filter.php", { params: { c: query } });
+const getMealsByArea = () => client.get("/filter.php", { params: { a: query } });
+const getMealsByIngredient = (query) => client.get("/filter.php", { params: { i: query } });
+
+const getMealsCategory = () => client.get("/categories.php");
+
+
+
 
 export {
   getRandomMeals,
@@ -28,5 +33,6 @@ export {
   getCategories,
   getMealsByCategory,
   getMealsByArea,
-  getMealsByIngredient
+  getMealsByIngredient,
+  getMealsCategory
 };
