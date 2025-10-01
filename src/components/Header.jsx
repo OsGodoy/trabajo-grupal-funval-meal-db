@@ -5,7 +5,7 @@ export default function Header() {
     <>
       <div className="w-80 h-40 p-4 px-6 gap-2 flex flex-col items-center justify-center">
         <div className="w-full flex items-center justify-between">
-          <img className="w-40" src="/images/el-chef-logo-01.png" alt="" />
+          <img className="w-35" src="/images/el-chef-logo-01.png" alt="" />
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
