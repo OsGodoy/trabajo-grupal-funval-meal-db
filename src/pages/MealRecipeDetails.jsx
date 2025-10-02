@@ -67,7 +67,7 @@ function MealRecipeDetails() {
             </div>
             <div className="p-2 text-sm w-full flex flex-col justify-center items-center sm:w-[40%]">
               <h3 className="font-bold mb-1">Ingredients:</h3>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc list-inside space-y-1 overflow-y-auto w-full md:max-h-38 lg:max-h-50">
                 {getIngredients(meal).map((item, idx) => (
                   <li key={idx}>
                     {item.ingredient} - {item.measure}
