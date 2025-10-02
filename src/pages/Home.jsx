@@ -3,15 +3,11 @@ import LoadingCarousel from "../components/LoadingCarousel";
 import Search from "../components/Search";
 
 function Home() {
-  return (
-    <>
-      <main className="bg-orange-100 flex flex-col items-center min-h-screen">
-        <Header />
-        <Search />
-        <LoadingCarousel />
-      </main>
-    </>
-  );
+    return (
+        <>
+        <h1>hola soy Home</h1>
+        </>
+    );
 }
 
 export default Home;
