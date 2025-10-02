@@ -16,11 +16,41 @@
   --color-secondary: #F2A245;
   --color-terciary: #4A2400;
   --color-active: #FAE0D3;
+  --bg-color-default: #FFECE3;
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin; 
+    scrollbar-color: var(--color-secondary) var(--bg-color-default) ; 
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-color-default); 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary); 
+    border-radius: 9999px;
+    border: 2px solid var(--bg-color-default); 
+    transition: background-color 0.3s ease; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary) !important; 
+  }
+ 
 }
 
 body {
   font-size: 14px;
   line-height: 1.42857143;
+  background-color: var(--bg-color-default);
 }
 
 h1 {
