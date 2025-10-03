@@ -13,6 +13,10 @@ export default function App() {
         path="/meal-recipes"
         element={<MealRecipes search={search} setSearch={setSearch} />}
       ></Route>
+       <Route
+        path="/meal-recipes/:typeFilterUrl/:searchUrl"
+        element={<MealRecipes search={search} setSearch={setSearch} />}
+      ></Route>
       <Route
         path="/meal-recipe-details/:id"
         element={<MealRecipeDetails />}
