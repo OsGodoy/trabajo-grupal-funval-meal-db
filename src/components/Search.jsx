@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function Search() {
   const [inputValue, setInputValue] = useState("");
-  const [variableSearch, setVariableSearch] = useState("");
+  const [search, setSearch] = useState("");
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function Search() {
             placeholder="What do we eat today?"
           />
           <button
-            onClick={() => setVariableSearch(inputValue)}
+            onClick={() => setSearch(inputValue)}
             className="cursor-pointer hover:scale-105 duration-100"
           >
             <svg
