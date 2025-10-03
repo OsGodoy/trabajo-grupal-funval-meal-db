@@ -1,37 +1,37 @@
-import { useEffect, useState } from 'react'
-import Search from './Search'
-import { Link } from 'react-router-dom'
-import { getAreas, getCategories } from '../api/recipe/services'
+import { useEffect, useState } from "react";
+import Search from "./Search";
+import { Link } from "react-router-dom";
+import { getAreas, getCategories } from "../api/recipe/services";
 
 export default function Header() {
-  const [areas, setAreas] = useState([])
-  const [categories, setCategories] = useState([])
+  const [areas, setAreas] = useState([]);
+  const [categories, setCategories] = useState([]);
   /* Cambie open Dropdown por dos estados para menu y submenu*/
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [subMenu, setSubMenu] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [subMenu, setSubMenu] = useState(null);
 
   const getAllAreas = async () => {
     try {
-      let resp = await getAreas()
-      setAreas(resp.data.meals)
+      let resp = await getAreas();
+      setAreas(resp.data.meals);
     } catch (error) {
-      console.error(error)
-      setAreas([])
+      console.error(error);
+      setAreas([]);
     }
-  }
+  };
   const getAllCategories = async () => {
     try {
-      let resp = await getCategories()
-      setCategories(resp.data.meals)
+      let resp = await getCategories();
+      setCategories(resp.data.meals);
     } catch (error) {
-      console.error(error)
-      setCategories([])
+      console.error(error);
+      setCategories([]);
     }
-  }
+  };
   useEffect(() => {
-    if (areas.length <= 0) getAllAreas()
-    if (categories.length <= 0) getAllCategories()
-  }, [])
+    if (areas.length <= 0) getAllAreas();
+    if (categories.length <= 0) getAllCategories();
+  }, []);
 
   return (
     <>
@@ -158,14 +158,14 @@ export default function Header() {
                   <li>
                     <button
                       onClick={() =>
-                        setSubMenu(subMenu === 'area' ? null : 'area')
+                        setSubMenu(subMenu === "area" ? null : "area")
                       }
                       className="w-full flex justify-between items-center px-4 py-2 text-orange-400 hover:bg-orange-100/30"
                     >
                       Area
                       <svg
                         className={`w-4 h-4 transform transition-transform${
-                          subMenu === 'area' ? 'rotate-180' : ''
+                          subMenu === "area" ? "rotate-180" : ""
                         }`}
                         fill="none"
                         stroke="currentColor"
@@ -179,7 +179,7 @@ export default function Header() {
                         />
                       </svg>
                     </button>
-                    {subMenu === 'area' && (
+                    {subMenu === "area" && (
                       <ul className="pl-6 max-h-60 overflow-y-auto ">
                         {areas.map((area, index) => (
                           <li
@@ -201,14 +201,14 @@ export default function Header() {
                   <li>
                     <button
                       onClick={() =>
-                        setSubMenu(subMenu === 'category' ? null : 'category')
+                        setSubMenu(subMenu === "category" ? null : "category")
                       }
                       className="w-full flex justify-between items-center px-4 py-2 text-orange-400 hover:bg-orange-100/30"
                     >
                       Category
                       <svg
                         className={`w-4 h-4 transform transition-transform ${
-                          subMenu === 'category' ? 'rotate-180' : ''
+                          subMenu === "category" ? "rotate-180" : ""
                         }`}
                         fill="none"
                         stroke="currentColor"
@@ -222,7 +222,7 @@ export default function Header() {
                         />
                       </svg>
                     </button>
-                    {subMenu === 'category' && (
+                    {subMenu === "category" && (
                       <ul className="pl-6 max-h-60 overflow-y-auto">
                         {categories.map((cat, index) => (
                           <li
@@ -247,5 +247,5 @@ export default function Header() {
         </div>
       </div>
     </>
-  )
+  );
 }

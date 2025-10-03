@@ -2,6 +2,7 @@ import Areas from "../components/Areas";
 import Carousel from "../components/Carousel";
 import Categories from "../components/Categories";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -22,6 +23,7 @@ function Home() {
       </Link>
       <Areas />
       <Categories />
+      <Footer />
     </main>
   );
 }
