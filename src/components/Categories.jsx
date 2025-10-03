@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Circulos() {
+export default function Categories() {
   const [categoria, setCategoria] = useState([]);
 
   useEffect(() => {

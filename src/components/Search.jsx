@@ -1,9 +1,7 @@
-import React from "react";
-
 export default function Search() {
   return (
     <>
-      <div className="w-80 md:w-90 xl:w-100 flex items-center justify-center">
+      <div className="w-70 md:w-90 xl:w-100 flex items-center justify-center">
         <section className="bg-white w-[80%] p-2 px-3 gap-2 sm:gap-8 md:gap-10 xl:gap-15 rounded-full flex items-center justify-center">
           <input
             className="md:text-base p-1 outline-none"
