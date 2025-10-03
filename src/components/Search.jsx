@@ -1,8 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Search() {
   const [inputValue, setInputValue] = useState("");
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (inputValue.trim() !== "") {
+      navigate(`/meal-recipes/general/${encodeURIComponent(inputValue)}`);
+    }
+  };
 
   return (
     <>
@@ -15,7 +22,7 @@ export default function Search() {
             placeholder="What do we eat today?"
           />
           <button
-            onClick={() => setSearch(inputValue)}
+            onClick={handleSearch}
             className="cursor-pointer hover:scale-105 duration-100"
           >
             <svg
