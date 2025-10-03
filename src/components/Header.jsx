@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Search from "./Search";
 import { Link } from "react-router-dom";
 import { getAreas, getCategories } from "../api/recipe/services";
@@ -9,6 +9,8 @@ export default function Header() {
   /* Cambie open Dropdown por dos estados para menu y submenu*/
   const [menuOpen, setMenuOpen] = useState(false);
   const [subMenu, setSubMenu] = useState(null);
+
+  const menuRef = useRef(null);
 
   const getAllAreas = async () => {
     try {
@@ -28,10 +30,31 @@ export default function Header() {
       setCategories([]);
     }
   };
+
   useEffect(() => {
     if (areas.length <= 0) getAllAreas();
     if (categories.length <= 0) getAllCategories();
   }, []);
+
+  /* Click fuera del menu en mobile */
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+        setSubMenu(null);
+      }
+    }
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -54,7 +77,6 @@ export default function Header() {
               <li className="text-orange-400 active:underline cursor-pointer">
                 <Link to="/"> Home</Link>
               </li>
-
               <li className="relative group">
                 <span className="text-orange-400 cursor-pointer flex items-center gap-1">
                   Area
@@ -89,7 +111,6 @@ export default function Header() {
                   ))}
                 </div>
               </li>
-
               <li className="relative group">
                 <span className="text-orange-400 cursor-pointer flex items-center gap-1">
                   Category
@@ -127,7 +148,7 @@ export default function Header() {
             </ul>
 
             {/* Mobile version */}
-            <div className="lg:hidden flex flex-col gap-2">
+            <div className="lg:hidden flex flex-col gap-2" ref={menuRef}>
               <button
                 className="bg-orange-400 rounded-md p-1 size-10 text-white"
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -152,7 +173,9 @@ export default function Header() {
               {menuOpen && (
                 <ul className="absolute top-10 right-5 w-56 bg-white shadow-lg rounded-lg flex flex-col text-base sm:text-lg p-2 z-50">
                   <li className="px-4 py-2 text-orange-400 hover:bg-orange-100/30 cursor-pointer">
-                    <Link to="/">Home</Link>
+                    <Link to="/" onClick={() => setMenuOpen(false)}>
+                      Home
+                    </Link>
                   </li>
 
                   <li>
@@ -164,7 +187,7 @@ export default function Header() {
                     >
                       Area
                       <svg
-                        className={`w-4 h-4 transform transition-transform${
+                        className={`w-4 h-4 transform transition-transform ${
                           subMenu === "area" ? "rotate-180" : ""
                         }`}
                         fill="none"
@@ -180,11 +203,11 @@ export default function Header() {
                       </svg>
                     </button>
                     {subMenu === "area" && (
-                      <ul className="pl-6 max-h-60 overflow-y-auto ">
+                      <ul className="pl-6 max-h-60 overflow-y-auto">
                         {areas.map((area, index) => (
                           <li
                             key={`m-area-${index}`}
-                            className="px-4 py-2 hover:bg-orange-100/30 cursor-pointer z-50"
+                            className="px-4 py-2 hover:bg-orange-100/30 cursor-pointer"
                           >
                             <Link
                               to={`/meal-recipes/area/${area.strArea}`}
