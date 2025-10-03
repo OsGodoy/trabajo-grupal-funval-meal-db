@@ -18,7 +18,6 @@ export default function Search() {
             onClick={() => setVariableSearch(inputValue)}
             className="cursor-pointer hover:scale-105 duration-100"
           >
-            {console.log(variableSearch)}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
