@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { getRandomMeals, getMealsByFilterType } from "../api/recipe/services";
+import {
+  getRandomMeals,
+  getMealsByFilterType,
+  getFilterMeals,
+} from "../api/recipe/services";
 import MealRecipeList from "../components/MealRecipeList";
 import Header from "../components/Header";
-import Search from "../components/Search";
 import Loading from "../components/shared/Loading";
 import Message from "../components/shared/Message";
 import { useParams } from "react-router-dom";
 
-function MealRecipes({ search }) {
+function MealRecipes() {
   const { searchUrl = null, typeFilterUrl = null } = useParams();
 
   const [data, setData] = useState([]);
@@ -19,10 +22,9 @@ function MealRecipes({ search }) {
     setIsLoading(true);
     try {
       let data = [];
-      if (search) {
-        data = await getMealsByFilterType(search.filterType, search.text);
+      if (typeFilterUrl === "general") {
+        data = await getFilterMeals(searchUrl);
       } else if (searchUrl && typeFilterUrl) {
-        console.log(searchUrl, typeFilterUrl);
         data = await getMealsByFilterType(typeFilterUrl, searchUrl);
       } else {
         data = await getRandomMeals();
@@ -39,8 +41,8 @@ function MealRecipes({ search }) {
   };
   useEffect(() => {
     getMeals();
-  }, [searchUrl, search]);
-  console.log(data);
+  }, [searchUrl]);
+
   return (
     <div className="flex flex-col justify-center items-center gap-8">
       <Header />

@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { getAreas, getCategories } from "../api/recipe/services";
 
 export default function Header() {
-
   const [areas, setAreas] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  /* Cambie open Dropdown por dos estados para menu y submenu*/
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [subMenu, setSubMenu] = useState(null);
+
   const getAllAreas = async () => {
     try {
       let resp = await getAreas();
@@ -31,11 +33,6 @@ export default function Header() {
     if (categories.length <= 0) getAllCategories();
   }, []);
 
-  
-  const toggleDropdown = (menu) => {
-    setOpenDropdown(openDropdown === menu ? null : menu);
-  };
-
   return (
     <>
       <div className="w-80 sm:w-160 lg:w-200 xl:w-280 h-40 sm:h-55 lg:h-65 p-4 px-6 gap-2 flex flex-col items-center justify-center">
@@ -50,7 +47,8 @@ export default function Header() {
           <div className="w-full md:w-1/3 lg:w-[35%]">
             <Search />
           </div>
-          
+
+          {/* Menu en Desktop */}
           <div className="flex w-full justify-end absolute right-4 top-4 md:relative md:right-0 md:top-0 md:w-1/3 lg:w-[40%]">
             <ul className="text-lg lg:text-xl hidden lg:flex gap-10 xl:gap-12">
               <li className="text-orange-400 active:underline cursor-pointer">
@@ -67,7 +65,11 @@ export default function Header() {
                     strokeWidth="2"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </span>
                 <div
@@ -88,7 +90,6 @@ export default function Header() {
                 </div>
               </li>
 
-
               <li className="relative group">
                 <span className="text-orange-400 cursor-pointer flex items-center gap-1">
                   Category
@@ -99,10 +100,14 @@ export default function Header() {
                     strokeWidth="2"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </span>
-                 <div
+                <div
                   className="absolute right-10 mt-2 w-72 sm:w-120 bg-white shadow-lg rounded-lg
                   grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 p-4
                   opacity-0 invisible group-hover:opacity-100 group-hover:visible
@@ -118,14 +123,14 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
-               
               </li>
             </ul>
-            
-             <div className="lg:hidden flex flex-col gap-2">
+
+            {/* Mobile version */}
+            <div className="lg:hidden flex flex-col gap-2">
               <button
                 className="bg-orange-400 rounded-md p-1 size-10 text-white"
-                onClick={() => toggleDropdown("menu")}
+                onClick={() => setMenuOpen(!menuOpen)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,12 +140,16 @@ export default function Header() {
                   stroke="currentColor"
                   className="w-8 h-8"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
                 </svg>
               </button>
 
               {/* Menu desplegable móvil */}
-              {openDropdown === "menu" && (
+              {menuOpen && (
                 <ul className="absolute top-10 right-5 w-56 bg-white shadow-lg rounded-lg flex flex-col text-base sm:text-lg p-2 z-50">
                   <li className="px-4 py-2 text-orange-400 hover:bg-orange-100/30 cursor-pointer">
                     <Link to="/">Home</Link>
@@ -148,27 +157,41 @@ export default function Header() {
 
                   <li>
                     <button
-                      onClick={() => toggleDropdown("area")}
+                      onClick={() =>
+                        setSubMenu(subMenu === "area" ? null : "area")
+                      }
                       className="w-full flex justify-between items-center px-4 py-2 text-orange-400 hover:bg-orange-100/30"
                     >
                       Area
                       <svg
-                        className={`w-4 h-4 transform transition-transform ${
-                          openDropdown === "area" ? "rotate-180" : ""
+                        className={`w-4 h-4 transform transition-transform${
+                          subMenu === "area" ? "rotate-180" : ""
                         }`}
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </button>
-                    {openDropdown === "area" && (
-                      <ul className="pl-6">
+                    {subMenu === "area" && (
+                      <ul className="pl-6 max-h-60 overflow-y-auto ">
                         {areas.map((area, index) => (
-                          <li key={`m-area-${index}`} className="px-4 py-2 hover:bg-orange-100/30 cursor-pointer z-50">
-                            {area.strArea}
+                          <li
+                            key={`m-area-${index}`}
+                            className="px-4 py-2 hover:bg-orange-100/30 cursor-pointer z-50"
+                          >
+                            <Link
+                              to={`/meal-recipes/area/${area.strArea}`}
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              {area.strArea}
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -177,27 +200,41 @@ export default function Header() {
 
                   <li>
                     <button
-                      onClick={() => toggleDropdown("category")}
+                      onClick={() =>
+                        setSubMenu(subMenu === "category" ? null : "category")
+                      }
                       className="w-full flex justify-between items-center px-4 py-2 text-orange-400 hover:bg-orange-100/30"
                     >
                       Category
                       <svg
                         className={`w-4 h-4 transform transition-transform ${
-                          openDropdown === "category" ? "rotate-180" : ""
+                          subMenu === "category" ? "rotate-180" : ""
                         }`}
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
                         viewBox="0 0 24 24"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </button>
-                    {openDropdown === "category" && (
-                      <ul className="pl-6">
+                    {subMenu === "category" && (
+                      <ul className="pl-6 max-h-60 overflow-y-auto">
                         {categories.map((cat, index) => (
-                          <li key={`m-cat-${index}`} className="px-4 py-2 hover:bg-orange-100/30 cursor-pointer">
-                            {cat.strCategory}
+                          <li
+                            key={`m-cat-${index}`}
+                            className="px-4 py-2 hover:bg-orange-100/30 cursor-pointer"
+                          >
+                            <Link
+                              to={`/meal-recipes/category/${cat.strCategory}`}
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              {cat.strCategory}
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -212,5 +249,3 @@ export default function Header() {
     </>
   );
 }
-
-
