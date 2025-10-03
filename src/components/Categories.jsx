@@ -3,7 +3,7 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import axios from "axios";
 
-export default function Circulos() {
+export default function Categories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
