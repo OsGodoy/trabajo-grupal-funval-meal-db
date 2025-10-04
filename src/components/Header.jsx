@@ -35,9 +35,9 @@ export default function Header() {
 
   return (
     <>
-      <div className="w-full sm:w-160 md:w-180 lg:w-200 xl:w-280 h-45 lg:h-65 p-4 gap-2 flex flex-col items-center justify-center">
+      <div className="w-full sm:w-160 md:w-180 lg:w-230 xl:w-280 h-45 lg:h-35 p-4 gap-2 flex flex-col items-center justify-center">
         <div className="relative w-full flex flex-col md:flex-row items-center justify-between">
-          <div className="flex justify-start w-full md:w-1/3 lg:w-[25%]">
+          <div className="flex justify-start w-full md:w-1/3 lg:w-[20%]">
             <Link to="/">
               {" "}
               <img
@@ -53,7 +53,7 @@ export default function Header() {
 
           {/* Menu en Desktop */}
           <div className="flex w-full justify-end absolute right-4 top-4 md:relative md:right-0 md:top-0 md:w-1/3 lg:w-[40%]">
-            <ul className="text-lg lg:text-xl hidden lg:flex gap-10 xl:gap-12">
+            <ul className="text-lg hidden lg:flex gap-10 xl:gap-12">
               <li className="text-orange-400 active:underline cursor-pointer">
                 <Link to="/"> Home</Link>
               </li>
@@ -130,7 +130,7 @@ export default function Header() {
             </ul>
 
             {/* Mobile version */}
-            <div className="lg:hidden relative flex-col gap-2 top-4">
+            <div className="lg:hidden relative flex-col gap-2 top-4 md:top-1">
               <button
                 className="bg-orange-400 rounded-md p-1 size-10 text-white"
                 onClick={() => setMenuOpen(!menuOpen)}

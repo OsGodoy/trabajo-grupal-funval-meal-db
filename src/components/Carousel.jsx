@@ -34,13 +34,13 @@ export default function Carousel() {
   if (data.length === 0) return <LoadingCarousel />;
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full lg:w-250 h-full overflow-hidden">
       {data.map((meal, index) => (
         <div key={`${index}-${meal.idMeal}`}>
           <img
             src={meal.strMealThumb}
             alt={meal.strMeal}
-            className={`absolute w-full h-full object-cover transition-opacity duration-700 ${
+            className={`xl:rounded-2xl absolute w-full h-full object-cover transition-opacity duration-700 ${
               index === current ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -62,7 +62,7 @@ export default function Carousel() {
         onClick={() =>
           setCurrent((prev) => (prev - 1 + data.length) % data.length)
         }
-        className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/60 hover:bg-black/70  text-white p-2 rounded-full cursor-pointer"
+        className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/60 hover:bg-black/70  text-white p-2 rounded-full cursor-pointer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export default function Carousel() {
 
       <button
         onClick={() => setCurrent((prev) => (prev + 1) % data.length)}
-        className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/60 hover:bg-black/70 text-white p-2 rounded-full cursor-pointer"
+        className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/60 hover:bg-black/70 text-white p-2 rounded-full cursor-pointer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -34,27 +34,31 @@ export default function Areas() {
   }, []);
 
   return (
-    <div className="bg-white flex flex-col justify-center items-center w-[90%] gap-6 py-6 mt-5 rounded-xl">
-      <img src="/images/banderas-2.png" alt="" />
-      <h1 className="flex text-xl ss:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-primary w-full justify-center items-center">
-        Recipes around the world
+    <div className="flex flex-col justify-center items-center w-full pt-6">
+      <h1 className="flex font-medium text-xl text-center lg:text-2xl font-primary w-70 justify-center items-center">
+        RECIPES AROUND THE WORLD
       </h1>
       {isShow && (
-        <div className="w-[90%] grid grid-cols-1 sm:grid-cols-2 place-items-center gap-4 px-8 sm:px-4">
-          {areas.map((recipe) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 items-center justify-center sm:px-4">
+          {areas.map((recipe, index) => (
             <Link
               to={`/meal-recipes/area/${recipe.strArea}`}
               key={recipe.idMeal}
             >
-              <div className="bg-orange-200 w-full flex flex-col justify-center items-center gap-1 lg:gap-6 lg:hover:scale-105 transition-transform p-2 md:p-4 rounded-xl">
-                <p className="text-orange-900 font-semibold justify-center text-lg lg:text-2xl xl:text-3xl  items-center font-secondary ">
-                  {recipe.strArea}
-                </p>
-                <img
-                  className="object-cover rounded-lg"
-                  src={recipe.strMealThumb}
-                  alt={recipe.strMeal}
-                />
+              <div
+                className={`bg-[url(/images/pass-card.png)] bg-size-[auto_450px] h-120 w-80 bg-no-repeat bg-center flex flex-col justify-center items-center gap-1 lg:gap-6 lg:hover:scale-105 transition-transform md:p-4 
+              ${index % 2 === 0 ? "rotate-2" : "-rotate-2"}`}
+              >
+                <div className="relative top-3 w-[70%] gap-1 flex flex-col items-center justify-center">
+                  <p className="text-orange-900 font-semibold justify-center text-xl xl:text-2xl  items-center font-secondary ">
+                    {recipe.strArea}
+                  </p>
+                  <img
+                    className="object-cover rounded-lg border-1 border-gray-300"
+                    src={recipe.strMealThumb}
+                    alt={recipe.strMeal}
+                  />
+                </div>
               </div>
             </Link>
           ))}
@@ -62,7 +66,6 @@ export default function Areas() {
       )}
       {isError && <Message text="Couldn't find the Areas" />}
       {isLoading && <Loading text="Loading Areas..." />}
-      <img src="/images/banderas-4.png" alt="" />
     </div>
   );
 }

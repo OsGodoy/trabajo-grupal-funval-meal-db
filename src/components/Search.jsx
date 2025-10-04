@@ -14,7 +14,7 @@ export default function Search() {
   return (
     <>
       <div className="w-70 sm:w-90 xl:w-100 flex items-center justify-center">
-        <section className="bg-white w-80 p-2 px-3 gap-5 sm:gap-25 md:gap-20 rounded-full flex items-center justify-center">
+        <section className="bg-white w-60 sm:w-80 p-2 px-3 gap-5 sm:gap-25 md:gap-20 rounded-full flex items-center justify-center">
           <input
             onChange={(e) => setInputValue(e.target.value)}
             className="md:text-base p-1 outline-none"
