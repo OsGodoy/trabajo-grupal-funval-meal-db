@@ -35,16 +35,19 @@ export default function Header() {
 
   return (
     <>
-      <div className="w-80 sm:w-160 lg:w-200 xl:w-280 h-40 sm:h-55 lg:h-65 p-4 px-6 gap-2 flex flex-col items-center justify-center">
+      <div className="w-full sm:w-160 md:w-180 lg:w-200 xl:w-280 h-45 lg:h-65 p-4 gap-2 flex flex-col items-center justify-center">
         <div className="relative w-full flex flex-col md:flex-row items-center justify-between">
           <div className="flex justify-start w-full md:w-1/3 lg:w-[25%]">
-            <img
-              className="w-35 sm:w-45"
-              src="/images/el-chef-logo-01.png"
-              alt=""
-            />
+            <Link to="/">
+              {" "}
+              <img
+                className="w-35 cursor-pointer"
+                src="/images/el-chef-logo-01.png"
+                alt=""
+              />
+            </Link>
           </div>
-          <div className="w-full md:w-1/3 lg:w-[35%]">
+          <div className="w-full md:w-1/3 lg:w-[35%] pt-3 flex items-center justify-center">
             <Search />
           </div>
 
@@ -127,7 +130,7 @@ export default function Header() {
             </ul>
 
             {/* Mobile version */}
-            <div className="lg:hidden flex flex-col gap-2">
+            <div className="lg:hidden relative flex-col gap-2 top-4">
               <button
                 className="bg-orange-400 rounded-md p-1 size-10 text-white"
                 onClick={() => setMenuOpen(!menuOpen)}

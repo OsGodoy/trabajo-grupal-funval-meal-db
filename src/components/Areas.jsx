@@ -15,7 +15,7 @@ export default function Areas() {
     const fetchMeals = async () => {
       try {
         let tempMeals = [];
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 4; i++) {
           const res = await axios.get(
             "https://www.themealdb.com/api/json/v1/1/random.php"
           );
@@ -34,26 +34,27 @@ export default function Areas() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full gap-3 py-10">
-      <h1 className="flex text-2xl ss:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-primary w-full justify-center items-center">
-        Area
+    <div className="bg-white flex flex-col justify-center items-center w-[90%] gap-6 py-6 mt-5 rounded-xl">
+      <img src="/images/banderas-2.png" alt="" />
+      <h1 className="flex text-xl ss:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-primary w-full justify-center items-center">
+        Recipes around the world
       </h1>
       {isShow && (
-        <div className="gap-10 md:gap-20 flex flex-wrap  py-4 px-2 justify-center items-center">
+        <div className="w-[90%] grid grid-cols-1 sm:grid-cols-2 place-items-center gap-4 px-8 sm:px-4">
           {areas.map((recipe) => (
             <Link
               to={`/meal-recipes/area/${recipe.strArea}`}
               key={recipe.idMeal}
             >
-              <div className="flex flex-col justify-center items-center py-3 drop-shadow-xl gap-4 lg:gap-6 lg:hover:scale-105 transition-transform ">
+              <div className="bg-orange-200 w-full flex flex-col justify-center items-center gap-1 lg:gap-6 lg:hover:scale-105 transition-transform p-2 md:p-4 rounded-xl">
+                <p className="text-orange-900 font-semibold justify-center text-lg lg:text-2xl xl:text-3xl  items-center font-secondary ">
+                  {recipe.strArea}
+                </p>
                 <img
-                  className="object-cover rounded-[15px] md:rounded-[20px] lg:rounded-[25px] xl:rounded-[30px] 2xl:rounded-[35px] drop-shadow-2xl h-[150px] w-[150px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] xl:h-[300px] xl:w-[300px] 2xl:h-[350px] 2xl:w-[350px]"
+                  className="object-cover rounded-lg"
                   src={recipe.strMealThumb}
                   alt={recipe.strMeal}
                 />
-                <p className="justify-center md:text-xl lg:text-2xl xl:text-3xl  items-center font-secondary ">
-                  {recipe.strArea}
-                </p>
               </div>
             </Link>
           ))}
@@ -61,6 +62,7 @@ export default function Areas() {
       )}
       {isError && <Message text="Couldn't find the Areas" />}
       {isLoading && <Loading text="Loading Areas..." />}
+      <img src="/images/banderas-4.png" alt="" />
     </div>
   );
 }

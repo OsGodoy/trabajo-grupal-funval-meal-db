@@ -9,12 +9,17 @@ function Home() {
   return (
     <main className="bg-orange-100 flex flex-col items-center min-h-screen">
       <Header />
-
-      <h1 className="text-2xl lg:text-3xl my-4">Culinary Recipes</h1>
-      <Carousel />
+      <div className="w-58 sm:w-100 sm:h-15 flex items-center justify-center text-center">
+        <h1 className="text-2xl leading-[25px]">
+          Find the best culinary recipes!
+        </h1>
+      </div>
+      <div className="flex items-center justify-center w-full h-100 sm:h-120 m-4">
+        <Carousel />
+      </div>
       <Link
         to="/meal-recipes"
-        className="bg-orange-400 border-3 border-orange-300 text-base rounded-lg text-white px-6 py-2 sm:px-8 sm:py-4  cursor-pointer hover:scale-105 duration-200"
+        className="bg-orange-400 border-3 border-orange-300 text-base rounded-lg text-white px-6 py-2 cursor-pointer hover:scale-105 duration-200"
       >
         <div className="animate-pulse flex items-center justify-center gap-2">
           Check out all Recipes
