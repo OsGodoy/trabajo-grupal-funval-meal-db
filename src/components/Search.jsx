@@ -17,6 +17,7 @@ export default function Search() {
         <section className="bg-white w-60 sm:w-80 p-2 px-3 gap-5 sm:gap-25 md:gap-20 rounded-full flex items-center justify-center">
           <input
             onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             className="md:text-base p-1 outline-none"
             type="text"
             placeholder="What do we eat today?"

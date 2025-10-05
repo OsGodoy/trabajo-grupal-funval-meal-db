@@ -50,7 +50,6 @@ function MealRecipes() {
       {isLoading && <Loading text="Loading recipe..." />}
       {isError && <Message message="Couldn't find the meal " />}
       {isShow && <MealRecipeList data={data} />}
-      <Footer/>
     </div>
   );
 }

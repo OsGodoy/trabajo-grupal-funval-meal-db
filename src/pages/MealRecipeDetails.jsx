@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { searchMealDetails } from "../api/recipe/services";
 import Loading from "../components/shared/Loading";
 import Message from "../components/shared/Message";
@@ -44,72 +45,48 @@ function MealRecipeDetails() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center mx-auto">
+    <div className="w-full flex flex-col items-center justify-center">
       {isLoading && <Loading text="Loading details..." />}
       {isError && <Message message="Couldn't find the meal :c" />}
       {isShow && (
-        <div className="xl:w-[70%] 2xl:w-[60%]">
+        <div className="flex flex-col items-center justify-center xl:w-[70%] 2xl:w-[60%]">
           {/* logo y título */}
-          <div className="flex flex-col items-center justify-center text-center">
-            <Header />
-            <h2 className="mt-4 font-bold text-xl">{meal.strMeal}</h2>
-          </div>
-
+          <Header />
           {/* imagen + ingredientes */}
           <div className="flex flex-col justify-center items-center gap-2 mb-4 w-full sm:flex-row">
-            <div className="p-4 w-full sm:w-[60%]">
+            <div className="flex flex-col gap-2 items-center justify-center w-full sm:w-[50%] md:w-[48%] lg:w-[45%] xl:w-[42%] p-6 md:pr-0">
+              <h2 className="mt-4 font-bold text-xl">{meal.strMeal}</h2>
               <img
                 src={meal.strMealThumb}
                 alt={meal.strMeal}
-                className="rounded-xl w-full object-cover h-auto max-w-md md:max-w-lg lg:max-w-xl mx-auto"
+                className="rounded-xl w-full object-cover h-auto max-w-md md:max-w-lg"
               />
             </div>
-            <div className="bg-[url(/images/libreta.png)] h-130 bg-contain bg-no-repeat bg-center p-8 text-sm w-full flex flex-col justify-center items-center sm:w-[40%]">
+            <div className="bg-[url(/images/libreta.png)] h-130 sm:h-110 lg:h-130 bg-contain bg-no-repeat bg-center p-8 text-sm w-full flex flex-col justify-center items-center sm:w-[40%]">
               <h3 className="text-lg font-semiboldbold underline mb-1">
                 Ingredients:
               </h3>
-              <ul className="list-disc list-inside space-y-1 overflow-y-auto w-65 p-2 h-80 md:max-h-38 lg:max-h-50">
+              <ul className="lg:text-base list-disc list-inside space-y-1 overflow-y-auto w-65 p-2 h-80 sm:h-68 sm:w-56 lg:w-65 lg:h-85">
                 {getIngredients(meal).map((item, idx) => (
                   <li key={idx}>
                     {item.ingredient} - {item.measure}
                   </li>
                 ))}
               </ul>
-              {/* modo de preparar */}
-              <div className="p-2 mb-4 hidden md:block">
-                <h3 className="font-bold mb-1">Instructions:</h3>
-                <p className="text-sm overflow-y-auto max-h-28 lg:max-h-60 xl:max-h-80">
-                  {meal.strInstructions}
-                </p>
-              </div>
-
-              {/* link al video */}
-              {meal.strYoutube && (
-                <div className="text-center mb-4 hidden md:block">
-                  <a
-                    href={meal.strYoutube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 underline"
-                  >
-                    ▶ Watch Video
-                  </a>
-                </div>
-              )}
             </div>
           </div>
 
           {/* modo de preparar */}
-          <div className="p-6 mb-4 md:hidden">
-            <h3 className="text-lg font-semiboldbold underline mb-1">
+          <div className="px-6 sm:px-8 mb-4 sm:w-150 lg:w-200">
+            <h3 className="text-lg lg:text-2xl font-semiboldbold underline mb-1">
               Instructions:
             </h3>
-            <p className="text-sm">{meal.strInstructions}</p>
+            <p className="text-sm lg:text-[18px] ">{meal.strInstructions}</p>
           </div>
 
           {/* link al video */}
           {meal.strYoutube && (
-            <div className="flex items-center justify-center text-center mb-6 md:hidden">
+            <div className="flex items-center justify-center text-center mb-6">
               <a
                 href={meal.strYoutube}
                 target="_blank"
@@ -137,8 +114,10 @@ function MealRecipeDetails() {
           )}
 
           {/* comentarios / puntuación */}
-          <div className="w-full rounded-xl px-6 mb-6">
-            <h3 className="text-base font-semiboldbold mb-1">Comments </h3>
+          <div className="flex flex-col items-center justify-center w-70 sm:w-100 lg:w-150 mb-6">
+            <h3 className="text-base font-semiboldbold mb-1 self-start">
+              Comments{" "}
+            </h3>
             <textarea
               placeholder="Write a comment..."
               className="w-full p-2 border-2 border-gray-400 rounded-md h-auto bg-white xl:h-40"

@@ -1,10 +1,10 @@
 function Loading({ text }) {
   return (
-    <div className="flex flex-col items-center justify-center h-20 md:h-40 lg:h-60 ">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <svg
         aria-hidden="true"
         role="status"
-        className="inline w-14 h-14 md:w-35 md:h-35 lg:w-55 lg:h-55 me-3 text-gray-200 animate-spin dark:text-gray-600"
+        className="text-white animate-spin size-20"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@ function Loading({ text }) {
           fill="#D16F2A"
         />
       </svg>
-      <span className="py-6 px-4 animate-ping text-[#D16F2A] md:text-lg lg:text-xl font-semibold">
+      <span className="py-6 px-4 animate-ping text-[#D16F2A] text-base font-semibold">
         {text}
       </span>
     </div>

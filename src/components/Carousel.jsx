@@ -36,7 +36,7 @@ export default function Carousel() {
   return (
     <div className="relative w-full lg:w-250 h-full overflow-hidden">
       {data.map((meal, index) => (
-        <div key={`${index}-${meal.idMeal}`}>
+        <div key={`${index}-${meal.idMeal}`} className="cursor-pointer">
           <img
             src={meal.strMealThumb}
             alt={meal.strMeal}
