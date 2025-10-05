@@ -45,7 +45,7 @@ function MealRecipeDetails() {
   }
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center mx-auto p-10">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center mx-auto">
       {isLoading && <Loading text="Loading details..." />}
       {isError && <Message message="Couldn't find the meal :c" />}
       {isShow && (

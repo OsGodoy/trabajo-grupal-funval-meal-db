@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <main className="bg-orange-100 flex flex-col items-center min-h-screen">
+    <main className="flex flex-col items-center min-h-screen">
       <Header />
       <div className="w-58 sm:w-100 sm:h-15 flex items-center justify-center text-center">
         <h1 className="text-2xl leading-[25px]">

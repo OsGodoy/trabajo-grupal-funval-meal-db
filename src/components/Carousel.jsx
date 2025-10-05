@@ -40,7 +40,7 @@ export default function Carousel() {
           <img
             src={meal.strMealThumb}
             alt={meal.strMeal}
-            className={`xl:rounded-2xl absolute w-full h-full object-cover transition-opacity duration-700 ${
+            className={`lg:rounded-2xl absolute w-full h-full object-cover transition-opacity duration-700 ${
               index === current ? "opacity-100" : "opacity-0"
             }`}
           />
