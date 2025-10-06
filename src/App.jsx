@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import MealRecipes from "./pages/MealRecipes";
 import MealRecipeDetails from "./pages/MealRecipeDetails";
+import Page404 from "./pages/Page404";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         path="/meal-recipe-details/:id"
         element={<MealRecipeDetails />}
       ></Route>
+      <Route path="*" element={<Page404 />} />
     </Routes>
   );
 }
