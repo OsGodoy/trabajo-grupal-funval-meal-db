@@ -1,6 +1,7 @@
 import { getRandomMeals } from "../api/recipe/services";
 import { useEffect, useState } from "react";
 import LoadingCarousel from "./LoadingCarousel";
+import { Link } from "react-router-dom";
 
 export default function Carousel() {
   const [data, setData] = useState([]);
@@ -36,19 +37,23 @@ export default function Carousel() {
   return (
     <div className="relative w-full lg:w-250 h-full overflow-hidden">
       {data.map((meal, index) => (
-        <div key={`${index}-${meal.idMeal}`} className="cursor-pointer">
+        <Link
+          key={`${index}-${meal.idMeal}`}
+          className={`cursor-pointer absolute inset-0 transition-opacity duration-700 ${index === current ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 pointer-events-none"
+            }`}
+          to={`/meal-recipe-details/${meal.idMeal}`}
+        >
+
           <img
             src={meal.strMealThumb}
-            alt={meal.strMeal}
-            className={`lg:rounded-2xl absolute w-full h-full object-cover transition-opacity duration-700 ${
-              index === current ? "opacity-100" : "opacity-0"
-            }`}
+            alt={`${meal.strMeal}-${meal.idMeal}`}
+            className={`lg:rounded-2xl absolute w-full h-full object-cover transition-opacity duration-700 ${index === current ? "opacity-100" : "opacity-0"
+              }`}
           />
 
           <div
-            className={`absolute w-full bottom-2 left-1/2 -translate-x-1/2 flex transition-opacity duration-700 ${
-              index === current ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute w-full bottom-2 left-1/2 -translate-x-1/2 flex transition-opacity duration-700 ${index === current ? "opacity-100" : "opacity-0"
+              }`}
           >
             <span className="h-15 w-full flex items-center justify-center ">
               <p className="bg-orange-950/90 w-full text-white text-center flex items-center justify-center p-1 text-[15px] lg:text-lg xl:text-xl">
@@ -56,7 +61,7 @@ export default function Carousel() {
               </p>
             </span>
           </div>
-        </div>
+        </Link>
       ))}
       <button
         onClick={() =>
