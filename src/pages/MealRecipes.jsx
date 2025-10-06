@@ -6,6 +6,7 @@ import {
 } from "../api/recipe/services";
 import MealRecipeList from "../components/MealRecipeList";
 import Header from "../components/Header";
+import Footer from "../components/Footer"
 import Loading from "../components/shared/Loading";
 import Message from "../components/shared/Message";
 import { useParams } from "react-router-dom";
@@ -44,9 +45,8 @@ function MealRecipes() {
   }, [searchUrl]);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8">
+    <div className="flex flex-col justify-center items-center gap-4">
       <Header />
-      {/* <Search /> */}
       {isLoading && <Loading text="Loading recipe..." />}
       {isError && <Message message="Couldn't find the meal " />}
       {isShow && <MealRecipeList data={data} />}

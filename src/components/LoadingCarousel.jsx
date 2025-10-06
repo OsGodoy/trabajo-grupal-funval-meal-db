@@ -4,7 +4,7 @@ export default function LoadingCarousel() {
   return (
     <>
       <section className="w-[70%] h-56 md:h-96 lg:h-110 xl:h-125  p-4 flex flex-col gap-2 animate-pulse items-center justify-center">
-        <div className="bg-orange-200 h-50 sm:h-80 md:h-100 lg:h-120 xl:h-130 w-full flex items-center justify-center rounded-xl">
+        <div className="h-50 sm:h-80 md:h-100 lg:h-120 xl:h-130 w-full flex items-center justify-center rounded-xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

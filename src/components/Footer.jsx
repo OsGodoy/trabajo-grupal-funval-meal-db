@@ -3,11 +3,11 @@ import React from "react";
 export default function Footer() {
   return (
     <footer
-      className="bg-[#D16F2A] text-white text-center py-4 mt-6 w-full
+      className="bg-[#D16F2A] text-orange-100 text-center p-4 w-full
     "
     >
-      <p className="text-sm">
-        © {new Date().getFullYear()} El Chef. All rights reserved.
+      <p className="text-xs flex items-center justify-center">
+        © {new Date().getFullYear()} The Chef. All rights reserved.
       </p>
     </footer>
   );

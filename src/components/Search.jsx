@@ -13,10 +13,11 @@ export default function Search() {
 
   return (
     <>
-      <div className="w-70 md:w-90 xl:w-100 flex items-center justify-center">
-        <section className="bg-white w-[80%] p-2 px-3 gap-2 sm:gap-8 md:gap-10 xl:gap-15 rounded-full flex items-center justify-center">
+      <div className="w-70 sm:w-90 xl:w-100 flex items-center justify-center">
+        <section className="bg-white w-60 sm:w-80 p-2 px-3 gap-5 sm:gap-25 md:gap-20 rounded-full flex items-center justify-center">
           <input
             onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             className="md:text-base p-1 outline-none"
             type="text"
             placeholder="What do we eat today?"
@@ -31,7 +32,8 @@ export default function Search() {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="size-7 text-orange-400"
+              className={`size-7
+                ${inputValue !== "" ? "text-orange-400" : "text-gray-300"} `}
             >
               <path
                 strokeLinecap="round"
